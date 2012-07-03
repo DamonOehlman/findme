@@ -1,6 +1,6 @@
 define('findme', [], function() {
   var reCommaDelim = /\,\s*/,
-      reColonDelim = /\:\s*/,
+      reColonOrSpaceDelim = /[\:\s]\s*/,
       reAlias = /(.*)\s+as\s+(\w+)/,
       reVersion = /(.*)\s+([\d\.x]+)/,
       reModules = /(.*)\[(.*?)\]$/;
@@ -28,7 +28,7 @@ define('findme', [], function() {
           text = modulesMatch[1];
           
           // parse out the modules
-          this.modules = modulesMatch[2].split(reColonDelim);
+          this.modules = modulesMatch[2].split(reColonOrSpaceDelim);
           
           // ensure the core module is included
           if (this.modules.indexOf('core') < 0) {
