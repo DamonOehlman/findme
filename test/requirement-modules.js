@@ -9,6 +9,8 @@ describe('requirement modules tests', function() {
         expect(req.version).to.equal('latest');
         expect(req.modules).to.contain('core');
         expect(req.modules).to.contain('zoom');
+        
+        expect(req.toString()).to.equal('mapcontrols[zoom]');
     });
     
     it('should be able to define a requirement with multiple modules', function() {
@@ -19,6 +21,8 @@ describe('requirement modules tests', function() {
         expect(req.modules).to.contain('core');
         expect(req.modules).to.contain('zoom');
         expect(req.modules).to.contain('scale');
+        
+        expect(req.toString()).to.equal('mapcontrols[zoom:scale]');
     });
     
     it('should be able to define a requirement with multiple modules (space delimited)', function() {
@@ -29,6 +33,8 @@ describe('requirement modules tests', function() {
         expect(req.modules).to.contain('core');
         expect(req.modules).to.contain('zoom');
         expect(req.modules).to.contain('scale');
+        
+        expect(req.toString()).to.equal('mapcontrols[zoom:scale]');
     });
     
     it('should be able to define a require with variable modules', function() {
@@ -38,6 +44,8 @@ describe('requirement modules tests', function() {
         expect(req.version).to.equal('latest');
         expect(req.modules).to.contain('core');
         expect(req.modules).to.contain('js#String.trim');
+        
+        expect(req.toString()).to.equal('trim[js#String.trim]');
     });
     
     it('should be able to define a require with multiple variable modules', function() {
@@ -48,5 +56,7 @@ describe('requirement modules tests', function() {
         expect(req.modules).to.contain('core');
         expect(req.modules).to.contain('js#String.trim');
         expect(req.modules).to.contain('js#Array.indexOf');
+        
+        expect(req.toString()).to.equal('trim[js#String.trim:js#Array.indexOf]');
     });
 });
