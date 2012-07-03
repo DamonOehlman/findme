@@ -1,0 +1,35 @@
+var findme = require('../pkg/cjs/findme'),
+    expect = require('expect.js');
+
+describe('relative requirement tests', function() {
+    it('should be able to define a requirement just using a relative path (same dir)', function() {
+        var req = new findme.Requirement('./underscore');
+        
+        expect(req.name).to.equal('underscore');
+        expect(req.path).to.equal('./underscore');
+    });
+
+
+    it('should be able to define a requirement just using a relative path (parent dir)', function() {
+        var req = new findme.Requirement('../libs/underscore');
+        
+        expect(req.name).to.equal('underscore');
+        expect(req.path).to.equal('../libs/underscore');
+    });
+    
+    it('should be able to alias relative modules', function() {
+        var req = new findme.Requirement('./underscore as _');
+
+        expect(req.name).to.equal('underscore');
+        expect(req.path).to.equal('./underscore');
+        expect(req.alias).to.equal('_');
+    });
+    
+    it('should be able to handle relative paths even when a version is specified', function() {
+        var req = new findme.Requirement('./underscore 1.3.x');
+        
+        expect(req.name).to.equal('underscore');
+        expect(req.path).to.equal('./underscore');
+        expect(req.version).to.equal('1.3.x');
+    });
+});
