@@ -9,6 +9,9 @@ function Requirement(text) {
     var aliasMatch = reAlias.exec(text),
         versionMatch, modulesMatch, pathMatch;
         
+    // initialise the relative status to false
+    this.relative = false;
+        
     // if we have an as section, then extract the text and the as section
     if (aliasMatch) {
         text = aliasMatch[1];
@@ -27,6 +30,9 @@ function Requirement(text) {
     if (pathMatch) {
         text = pathMatch[2];
         this.path = pathMatch[1];
+        
+        // set the relative flag to true
+        this.relative = true;
     }
     
     // check for a module definition

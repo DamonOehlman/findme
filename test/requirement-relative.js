@@ -7,6 +7,7 @@ describe('relative requirement tests', function() {
         
         expect(req.name).to.equal('underscore');
         expect(req.path).to.equal('./underscore');
+        expect(req.relative).to.be.ok();
     });
 
 
@@ -15,6 +16,7 @@ describe('relative requirement tests', function() {
         
         expect(req.name).to.equal('underscore');
         expect(req.path).to.equal('../libs/underscore');
+        expect(req.relative).to.be.ok();
     });
     
     it('should be able to alias relative modules', function() {
@@ -23,6 +25,7 @@ describe('relative requirement tests', function() {
         expect(req.name).to.equal('underscore');
         expect(req.path).to.equal('./underscore');
         expect(req.alias).to.equal('_');
+        expect(req.relative).to.be.ok();
     });
     
     it('should be able to handle relative paths even when a version is specified', function() {
@@ -31,5 +34,15 @@ describe('relative requirement tests', function() {
         expect(req.name).to.equal('underscore');
         expect(req.path).to.equal('./underscore');
         expect(req.version).to.equal('1.3.x');
+        expect(req.relative).to.be.ok();
+    });
+    
+    it('should not think a non-relative package is relative', function() {
+        var req = new findme.Requirement('underscore 1.3.x');
+        
+        expect(req.name).to.equal('underscore');
+        expect(req.path).to.equal('underscore');
+        expect(req.version).to.equal('1.3.x');
+        expect(req.relative).to.not.be.ok();
     });
 });
