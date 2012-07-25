@@ -1,4 +1,4 @@
-var findme = require('../pkg/cjs/findme'),
+var findme = require('../dist/commonjs/findme'),
     expect = require('expect.js');
 
 describe('requirement modules tests', function() {

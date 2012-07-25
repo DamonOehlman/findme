@@ -1,3 +1,3 @@
-var findme = require('./pkg/cjs/findme');
+var findme = require('./dist/commonjs/findme');
 
 module.exports = findme;

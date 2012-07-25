@@ -1,3 +1,6 @@
+
+
+
 var reCommaDelim = /\,\s*/,
     reColonOrSpaceDelim = /[\:\s]\s*/,
     reAlias = /(.*)\s+as\s+(\w+)/,
@@ -146,3 +149,7 @@ function findme(content, opts) {
 }
 
 findme.Requirement = Requirement;
+
+if (typeof findme != 'undefined') {
+    module.exports = findme;
+}
