@@ -62,4 +62,6 @@ function findme(content, opts) {
     };
 }
 
+//= ext/{{ packageType }}  : ext/browser
+
 findme.Requirement = Requirement;
