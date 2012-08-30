@@ -62,4 +62,8 @@ function findme(content, opts) {
     };
 }
 
+findme.define = function(input) {
+    return new Requirement(input);
+};
+
 findme.Requirement = Requirement;

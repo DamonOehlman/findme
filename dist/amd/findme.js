@@ -147,6 +147,10 @@ define('findme', [], function() {
         };
     }
     
+    findme.define = function(input) {
+        return new Requirement(input);
+    };
+    
     findme.Requirement = Requirement;
     
     return typeof findme != 'undefined' ? findme : undefined;

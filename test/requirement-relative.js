@@ -3,7 +3,7 @@ var findme = require('../dist/commonjs/findme'),
 
 describe('relative requirement tests', function() {
     it('should be able to define a requirement just using a relative path (same dir)', function() {
-        var req = new findme.Requirement('./underscore');
+        var req = findme.define('./underscore');
         
         expect(req.name).to.equal('underscore');
         expect(req.path).to.equal('./underscore');
@@ -14,7 +14,7 @@ describe('relative requirement tests', function() {
 
 
     it('should be able to define a requirement just using a relative path (parent dir)', function() {
-        var req = new findme.Requirement('../libs/underscore');
+        var req = findme.define('../libs/underscore');
         
         expect(req.name).to.equal('underscore');
         expect(req.path).to.equal('../libs/underscore');
@@ -24,7 +24,7 @@ describe('relative requirement tests', function() {
     });
     
     it('should be able to alias relative modules', function() {
-        var req = new findme.Requirement('./underscore as _');
+        var req = findme.define('./underscore as _');
 
         expect(req.name).to.equal('underscore');
         expect(req.path).to.equal('./underscore');
@@ -35,7 +35,7 @@ describe('relative requirement tests', function() {
     });
     
     it('should be able to handle relative paths even when a version is specified', function() {
-        var req = new findme.Requirement('./underscore 1.3.x');
+        var req = findme.define('./underscore 1.3.x');
         
         expect(req.name).to.equal('underscore');
         expect(req.path).to.equal('./underscore');
@@ -46,7 +46,7 @@ describe('relative requirement tests', function() {
     });
     
     it('should not think a non-relative package is relative', function() {
-        var req = new findme.Requirement('underscore 1.3.x');
+        var req = findme.define('underscore 1.3.x');
         
         expect(req.name).to.equal('underscore');
         expect(req.path).to.equal('underscore');

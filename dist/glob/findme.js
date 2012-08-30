@@ -148,6 +148,10 @@
         };
     }
     
+    findme.define = function(input) {
+        return new Requirement(input);
+    };
+    
     findme.Requirement = Requirement;
     
     if (typeof findme != 'undefined') {

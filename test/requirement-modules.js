@@ -3,7 +3,7 @@ var findme = require('../dist/commonjs/findme'),
 
 describe('requirement modules tests', function() {
     it('should be able to define a requirement with modules', function() {
-        var req = new findme.Requirement('mapcontrols[zoom]');
+        var req = findme.define('mapcontrols[zoom]');
         
         expect(req.name).to.equal('mapcontrols');
         expect(req.version).to.equal('latest');
@@ -14,7 +14,7 @@ describe('requirement modules tests', function() {
     });
     
     it('should be able to define a requirement with multiple modules', function() {
-        var req = new findme.Requirement('mapcontrols[zoom:scale]');
+        var req = findme.define('mapcontrols[zoom:scale]');
         
         expect(req.name).to.equal('mapcontrols');
         expect(req.version).to.equal('latest');
@@ -26,7 +26,7 @@ describe('requirement modules tests', function() {
     });
     
     it('should be able to define a requirement with multiple modules (space delimited)', function() {
-        var req = new findme.Requirement('mapcontrols[zoom scale]');
+        var req = findme.define('mapcontrols[zoom scale]');
         
         expect(req.name).to.equal('mapcontrols');
         expect(req.version).to.equal('latest');
@@ -38,7 +38,7 @@ describe('requirement modules tests', function() {
     });
     
     it('should be able to define a require with variable modules', function() {
-        var req = new findme.Requirement('trim[js#String.trim]');
+        var req = findme.define('trim[js#String.trim]');
         
         expect(req.name).to.equal('trim');
         expect(req.version).to.equal('latest');
@@ -49,7 +49,7 @@ describe('requirement modules tests', function() {
     });
     
     it('should be able to define a require with multiple variable modules', function() {
-        var req = new findme.Requirement('trim[js#String.trim js#Array.indexOf]');
+        var req = findme.define('trim[js#String.trim js#Array.indexOf]');
         
         expect(req.name).to.equal('trim');
         expect(req.version).to.equal('latest');
