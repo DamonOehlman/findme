@@ -59,4 +59,12 @@ describe('requirement modules tests', function() {
         
         expect(req.toString()).to.equal('trim[js#String.trim:js#Array.indexOf]');
     });
+
+    it('should be able to define a module that has an extension in the name', function() {
+        var req = findme.define('spin.js');
+
+        expect(req.name).to.equal('spin.js');
+        expect(req.version).to.equal('latest');
+        expect(req.modules).to.contain('core');
+    });
 });
