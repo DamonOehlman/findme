@@ -1,6 +1,26 @@
+/* ~findme~
+ * 
+ * Textual module requirement specification
+ * 
+ * -meta---
+ * version:    0.1.1
+ * builddate:  2012-11-01T12:12:07.638Z
+ * generator:  interleave@0.5.23
+ * 
+ * 
+ * 
+ */ 
 
-// req: 
-(function(glob) {
+// umdjs returnExports pattern: https://github.com/umdjs/umd/blob/master/returnExports.js
+(function (root, factory) {
+    if (typeof exports === 'object') {
+        module.exports = factory();
+    } else if (typeof define === 'function' && define.amd) {
+        define([], factory);
+    } else {
+        root['findme'] = factory();
+    }
+}(this, function () {
     var reCommaDelim = /\,\s*/,
         reColonOrSpaceDelim = /[\:\s]\s*/,
         reAlias = /(.*)\s+as\s+(\w+)/,
@@ -154,7 +174,5 @@
     
     findme.Requirement = Requirement;
     
-    if (typeof findme != 'undefined') {
-        glob.findme = findme;
-    }
-}(this));
+    return typeof findme != 'undefined' ? findme : undefined;
+}));

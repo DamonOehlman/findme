@@ -1,4 +1,4 @@
-var findme = require('../dist/commonjs/findme'),
+var findme = require('../findme'),
     expect = require('expect.js');
 
 describe('findme singleline parsing', function() {
