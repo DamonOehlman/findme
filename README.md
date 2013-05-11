@@ -4,6 +4,8 @@ FindMe is a small node library that is designed to parse a string and generate a
 
 <a href="http://travis-ci.org/#!/DamonOehlman/findme"><img src="https://secure.travis-ci.org/DamonOehlman/findme.png" alt="Build Status"></a>
 
+[![browser support](https://ci.testling.com/buildjs/findme.png)](https://ci.testling.com/buildjs/findme)
+
 ## Requirement Definition
 
 A requirement can be defined in a number of ways. Firstly, you can specify a module simply by name:
