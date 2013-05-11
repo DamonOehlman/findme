@@ -1,56 +1,58 @@
-var findme = require('../findme'),
-    expect = require('expect.js');
+var findme = require('..'),
+    test = require('tape');
 
-describe('relative requirement tests', function() {
-    it('should be able to define a requirement just using a relative path (same dir)', function() {
-        var req = findme.define('./underscore');
-        
-        expect(req.name).to.equal('underscore');
-        expect(req.path).to.equal('./underscore');
-        expect(req.relative).to.be.ok();
-        
-        expect(req.toString()).to.equal('./underscore');
-    });
-
-
-    it('should be able to define a requirement just using a relative path (parent dir)', function() {
-        var req = findme.define('../libs/underscore');
-        
-        expect(req.name).to.equal('underscore');
-        expect(req.path).to.equal('../libs/underscore');
-        expect(req.relative).to.be.ok();
-        
-        expect(req.toString()).to.equal('../libs/underscore');
-    });
+test('define a requirement just using a relative path (same dir)', function(t) {
+    var req = findme.define('./underscore');
     
-    it('should be able to alias relative modules', function() {
-        var req = findme.define('./underscore as _');
+    t.plan(4);
+    t.equal(req.name, 'underscore', 'name == underscore');
+    t.equal(req.path, './underscore');
 
-        expect(req.name).to.equal('underscore');
-        expect(req.path).to.equal('./underscore');
-        expect(req.alias).to.equal('_');
-        expect(req.relative).to.be.ok();
-        
-        expect(req.toString()).to.equal('./underscore as _');
-    });
+    t.ok(req.relative);
+    t.equal(req.toString(), './underscore');
+});
+
+
+test('define a requirement just using a relative path (parent dir)', function(t) {
+    var req = findme.define('../libs/underscore');
     
-    it('should be able to handle relative paths even when a version is specified', function() {
-        var req = findme.define('./underscore 1.3.x');
-        
-        expect(req.name).to.equal('underscore');
-        expect(req.path).to.equal('./underscore');
-        expect(req.version).to.equal('1.3.x');
-        expect(req.relative).to.be.ok();
-        
-        expect(req.toString()).to.equal('./underscore 1.3.x');
-    });
+    t.plan(4);
+    t.equal(req.name, 'underscore', 'name == underscore');
+    t.equal(req.path, '../libs/underscore');
+
+    t.ok(req.relative);
+    t.equal(req.toString(), '../libs/underscore');
+});
+
+test('alias relative modules', function(t) {
+    var req = findme.define('./underscore as _');
+
+    t.plan(5);
+    t.equal(req.name, 'underscore', 'name == underscore');
+    t.equal(req.path, './underscore');
+    t.equal(req.alias, '_');
+
+    t.ok(req.relative);
+    t.equal(req.toString(), './underscore as _');
+});
+
+test('handle relative paths even when a version is specified', function(t) {
+    var req = findme.define('./underscore 1.3.x');
     
-    it('should not think a non-relative package is relative', function() {
-        var req = findme.define('underscore 1.3.x');
-        
-        expect(req.name).to.equal('underscore');
-        expect(req.path).to.equal('underscore');
-        expect(req.version).to.equal('1.3.x');
-        expect(req.relative).to.not.be.ok();
-    });
+    t.plan(5);
+    t.equal(req.name, 'underscore', 'name == underscore');
+    t.equal(req.path, './underscore');
+    t.equal(req.version, '1.3.x');
+
+    t.ok(req.relative);
+    t.equal(req.toString(), './underscore 1.3.x');
+});
+
+test('should not think a non-relative package is relative', function(t) {
+    var req = findme.define('underscore 1.3.x');
+    
+    t.plan(3);
+    t.equal(req.name, 'underscore', 'name == underscore');
+    t.equal(req.version, '1.3.x');
+    t.notOk(req.relative);
 });

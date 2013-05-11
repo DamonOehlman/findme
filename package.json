@@ -12,8 +12,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "expect.js": "0.1.x",
-    "mocha": "1.6.x"
+    "tape": "1.0.x"
   },
   "repository": {
     "type": "git",
@@ -23,7 +22,7 @@
     "url": "http://github.com/buildjs/findme/issues"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha --reporter spec"
+    "test": "./node_modules/.bin/tape test/all.js"
   },
   "contributors": [],
   "optionalDependencies": {}

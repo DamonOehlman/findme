@@ -1,42 +1,42 @@
-var findme = require('../findme'),
-    expect = require('expect.js');
+var findme = require('..'),
+    test = require('tape');
 
-describe('requirement tests', function() {
-    it('should be able to define a requirement just using a name', function() {
-        var req = new findme.Requirement('underscore');
-        
-        expect(req.name).to.equal('underscore');
-        expect(req.alias).to.equal('underscore');
-        
-        expect(req.toString()).to.equal('underscore');
-    });
+test('define a requirement just using a name', function(t) {
+    var req = new findme.Requirement('underscore');
     
-    it('should be able to define a require that uses an alias', function() {
-        var req = new findme.Requirement('underscore as _');
-        
-        expect(req.name).to.equal('underscore');
-        expect(req.alias).to.equal('_');
-        
-        expect(req.toString()).to.equal('underscore as _');
-    });
+    t.plan(3);
+    t.equal(req.name, 'underscore');
+    t.equal(req.alias, 'underscore');
+    t.equal(req.toString(), 'underscore');
+});
+
+test('define a require that uses an alias', function(t) {
+    var req = new findme.Requirement('underscore as _');
     
-    it('should be able to extract a version from the requirement', function() {
-        var req = new findme.Requirement('underscore 1.3.x');
-        
-        expect(req.name).to.equal('underscore');
-        expect(req.alias).to.equal('underscore');
-        expect(req.version).to.equal('1.3.x');
-        
-        expect(req.toString()).to.equal('underscore 1.3.x');
-    });
+    t.plan(3);
+    t.equal(req.name, 'underscore');
+    t.equal(req.alias, '_');
+    t.equal(req.toString(), 'underscore as _');
+});
+
+test('extract a version from the requirement', function(t) {
+    var req = new findme.Requirement('underscore 1.3.x');
     
-    it('should be able to handle both a version and alias being defined', function() {
-        var req = new findme.Requirement('underscore 1.3.x as _');
-        
-        expect(req.name).to.equal('underscore');
-        expect(req.alias).to.equal('_');
-        expect(req.version).to.equal('1.3.x');
-        
-        expect(req.toString()).to.equal('underscore 1.3.x as _');
-    });
+    t.plan(4);
+    t.equal(req.name, 'underscore');
+    t.equal(req.alias, 'underscore');
+    t.equal(req.version, '1.3.x');
+
+    t.equal(req.toString(), 'underscore 1.3.x');
+});
+
+test('handle both a version and alias being defined', function(t) {
+    var req = new findme.Requirement('underscore 1.3.x as _');
+    
+    t.plan(4);
+    t.equal(req.name, 'underscore');
+    t.equal(req.alias, '_');
+    t.equal(req.version, '1.3.x');
+
+    t.equal(req.toString(), 'underscore 1.3.x as _');
 });

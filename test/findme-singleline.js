@@ -1,58 +1,61 @@
-var findme = require('../findme'),
-    expect = require('expect.js');
+var findme = require('..'),
+    test = require('tape');
 
-describe('findme singleline parsing', function() {
-    it('should be able to extract the requirements from a single line of text', function() {
-        var output = findme('// req: underscore, matchme');
-        
-        expect(typeof output.content).to.equal('string');
-        expect(output.content).to.equal('');
-        expect(output.dependencies.underscore).to.be.ok();
-        expect(output.dependencies.matchme).to.be.ok();
-    });
-    
-    it('should be able to extract requirements using the // dep syntax', function() {
-        var output = findme('// dep: underscore, matchme');
-        
-        expect(typeof output.content).to.equal('string');
-        expect(output.content).to.equal('');
-        expect(output.dependencies.underscore).to.be.ok();
-        expect(output.dependencies.matchme).to.be.ok();
-    });
-    
-    it('should be able to extract requirements using an alias', function() {
-        var output = findme('// dep: underscore as _, matchme');
-        
-        expect(typeof output.content).to.equal('string');
-        expect(output.content).to.equal('');
+test('extract the requirements from a single line of text', function(t) {
+    var output = findme('// req: underscore, matchme');
 
-        expect(output.dependencies.underscore).to.be.ok();
-        expect(output.dependencies.underscore.alias).to.equal('_');
-        expect(output.dependencies.matchme).to.be.ok();
-    });
-    
-    it('should be able to extract versioned requirements', function() {
-        var output = findme('// dep: underscore 1.3.x as _, matchme');
-        
-        expect(typeof output.content).to.equal('string');
-        expect(output.content).to.equal('');
+    t.plan(4);
+    t.equal(typeof output.content, 'string', 'string content');
+    t.equal(output.content, '', 'empty content');
+    t.ok(output.dependencies.underscore, 'found underscore');
+    t.ok(output.dependencies.matchme, 'found matchme');
+});
 
-        expect(output.dependencies.underscore).to.be.ok();
-        expect(output.dependencies.underscore.version).to.equal('1.3.x');
-        expect(output.dependencies.underscore.alias).to.equal('_');
-        expect(output.dependencies.matchme).to.be.ok();
-    });
-    
-    it('should be able to extract a relative requirement', function() {
-        var output = findme('// dep: ./underscore 1.3.x as _, matchme');
-        
-        expect(typeof output.content).to.equal('string');
-        expect(output.content).to.equal('');
+test('extract requirements using the // dep syntax', function(t) {
+    var output = findme('// dep: underscore, matchme');
 
-        expect(output.dependencies.underscore).to.be.ok();
-        expect(output.dependencies.underscore.version).to.equal('1.3.x');
-        expect(output.dependencies.underscore.alias).to.equal('_');
-        expect(output.dependencies.underscore.path).to.equal('./underscore');
-        expect(output.dependencies.matchme).to.be.ok();
-    });
+    t.plan(4);
+    t.equal(typeof output.content, 'string', 'string content');
+    t.equal(output.content, '', 'empty content');
+    t.ok(output.dependencies.underscore, 'found underscore');
+    t.ok(output.dependencies.matchme, 'found matchme');
+});
+
+test('extract requirements using an alias', function(t) {
+    var output = findme('// dep: underscore as _, matchme');
+    
+    t.plan(5);
+    t.equal(typeof output.content, 'string', 'string content');
+    t.equal(output.content, '', 'empty content');
+
+    t.ok(output.dependencies.underscore, 'found underscore');
+    t.equal(output.dependencies.underscore.alias, '_', 'underscore aliased to _');
+    t.ok(output.dependencies.matchme, 'found matchme');
+});
+    
+test('extract versioned requirements', function(t) {
+    var output = findme('// dep: underscore 1.3.x as _, matchme');
+    
+    t.plan(6);
+    t.equal(typeof output.content, 'string', 'string content');
+    t.equal(output.content, '', 'empty content');
+
+    t.ok(output.dependencies.underscore, 'found underscore');
+    t.equal(output.dependencies.underscore.version, '1.3.x', 'version extracted as 1.3.x');
+    t.equal(output.dependencies.underscore.alias, '_', 'underscore aliased to _');
+    t.ok(output.dependencies.matchme, 'found matchme');
+});
+
+test('extract a relative requirement', function(t) {
+    var output = findme('// dep: ./underscore 1.3.x as _, matchme');
+    
+    t.plan(7);
+    t.equal(typeof output.content, 'string', 'string content');
+    t.equal(output.content, '', 'empty content');
+
+    t.ok(output.dependencies.underscore, 'found underscore');
+    t.equal(output.dependencies.underscore.version, '1.3.x', 'version extracted as 1.3.x');
+    t.equal(output.dependencies.underscore.alias, '_', 'underscore aliased to _');
+    t.equal(output.dependencies.underscore.path, './underscore', 'detected relative path');
+    t.ok(output.dependencies.matchme, 'found matchme');
 });
