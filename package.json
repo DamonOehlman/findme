@@ -5,11 +5,7 @@
   "tags": [
     "require"
   ],
-  "main": "findme",
   "version": "0.1.2",
-  "engines": {
-    "node": ">= 0.6.x < 0.9.0"
-  },
   "dependencies": {},
   "devDependencies": {
     "tape": "1.0.x"

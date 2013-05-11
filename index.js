@@ -1,17 +1,3 @@
-/* ~findme~
- * 
- * Textual module requirement specification
- * 
- * -meta---
- * version:    0.1.1
- * builddate:  2012-11-01T12:12:07.638Z
- * generator:  interleave@0.5.23
- * 
- * 
- * 
- */ 
-
-// umdjs returnExports pattern: https://github.com/umdjs/umd/blob/master/returnExports.js
 (function (root, factory) {
     if (typeof exports === 'object') {
         module.exports = factory();
@@ -21,12 +7,15 @@
         root['findme'] = factory();
     }
 }(this, function () {
+
     var reCommaDelim = /\,\s*/,
         reColonOrSpaceDelim = /[\:\s]\s*/,
         reAlias = /(.*)\s+as\s+(\w+)/,
         reLeadingPaths = /^(\..*[\/\\])(.*)$/,
         reVersion = /(.*)\s+([\d\.x]+)/,
-        reModules = /(.*)\[(.*?)\]$/;
+        reModules = /(.*)\[(.*?)\]$/,
+        reDelimitedModules = /\[([^\]]*[\s\,][^\]]*)\]/g,
+        reDelim = /\,\s*/g;
     
     function Requirement(text) {
         var aliasMatch = reAlias.exec(text),
@@ -105,9 +94,6 @@
             return output;
         }
     };
-    
-    var reDelimitedModules = /\[([^\]]*[\s\,][^\]]*)\]/g,
-        reDelim = /\,\s*/g;
     
     function findme(content, opts) {
         var reRequire, reSplit,
