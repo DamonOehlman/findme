@@ -1,4 +1,4 @@
-var reAlias = /(.*)\s+as\s+(\w+)/;
+var reAlias = /(.*)\s+as\s+(\S+)/;
 var reColonOrSpaceDelim = /[\:\s]\s*/;
 var reLeadingPaths = /^(\..*[\/\\])(.*)$/;
 var reModules = /(.*)\[(.*?)\]$/;
