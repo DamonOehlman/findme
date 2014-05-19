@@ -29,7 +29,8 @@
     "url": "http://github.com/buildjs/findme/issues"
   },
   "scripts": {
-    "test": "tape test/all.js"
+    "test": "node test/all.js",
+    "gendocs": "gendocs > README.md"
   },
   "homepage": "https://github.com/buildjs/findme",
   "main": "index.js",
