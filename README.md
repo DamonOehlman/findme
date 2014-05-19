@@ -8,9 +8,9 @@ embedded in `// dep:` or `// req:` comments.
 [![NPM](https://nodei.co/npm/findme.png)](https://nodei.co/npm/findme/)
 
 
-[![browser support](https://ci.testling.com/buildjs/findme.png)](https://ci.testling.com/buildjs/findme)
+[![browser support](https://ci.testling.com/DamonOehlman/findme.png)](https://ci.testling.com/DamonOehlman/findme)
 
-[![unstable](https://img.shields.io/badge/stability-unstable-yellowgreen.svg)](https://github.com/badges/stability-badges) [![Build Status](https://img.shields.io/travis/buildjs/findme.svg?branch=master)](https://travis-ci.org/buildjs/findme) 
+[![unstable](https://img.shields.io/badge/stability-unstable-yellowgreen.svg)](https://github.com/badges/stability-badges) [![Build Status](https://img.shields.io/travis/DamonOehlman/findme.svg?branch=master)](https://travis-ci.org/DamonOehlman/findme) 
 
 ## Requirement Definition
 
