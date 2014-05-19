@@ -1,9 +1,5 @@
 var Requirement = require('./requirement');
 var reCommaDelim = /\,\s*/;
-var reColonOrSpaceDelim = /[\:\s]\s*/;
-var reLeadingPaths = /^(\..*[\/\\])(.*)$/;
-var reVersion = /(.*)\s+([\d\.x]+)/;
-var reModules = /(.*)\[(.*?)\]$/;
 var reDelimitedModules = /\[([^\]]*[\s\,][^\]]*)\]/g;
 var reDelim = /\,\s*/g;
 

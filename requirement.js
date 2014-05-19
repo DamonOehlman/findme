@@ -1,4 +1,8 @@
 var reAlias = /(.*)\s+as\s+(\w+)/;
+var reColonOrSpaceDelim = /[\:\s]\s*/;
+var reLeadingPaths = /^(\..*[\/\\])(.*)$/;
+var reModules = /(.*)\[(.*?)\]$/;
+var reVersion = /(.*)\s+([\d\.x]+)/;
 
 function Requirement(text) {
   var aliasMatch;
