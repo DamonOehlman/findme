@@ -23,16 +23,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/buildjs/findme.git"
+    "url": "git://github.com/DamonOehlman/findme.git"
   },
   "bugs": {
-    "url": "http://github.com/buildjs/findme/issues"
+    "url": "http://github.com/DamonOehlman/findme/issues"
   },
   "scripts": {
     "test": "node test/all.js",
     "gendocs": "gendocs > README.md"
   },
-  "homepage": "https://github.com/buildjs/findme",
+  "homepage": "https://github.com/DamonOehlman/findme",
   "main": "index.js",
   "directories": {
     "test": "test"
